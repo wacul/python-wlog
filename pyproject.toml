@@ -2,10 +2,11 @@
 name = "wlog"
 version = "0.1.0"
 description = ""
-authors = ["wacul <dev+github@wacul.co.jp"]
+authors = ["wacul <dev@wacul.co.jp>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
+structlog = "^21.1.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
