@@ -30,4 +30,6 @@ in other codeset, use this library like standard logging libraray.
 ```py
 from wlog import get_logger
 logger = get_logger(__name__)
+
+logger.bind(xxx="yyy").info("this is info message")
 ```
