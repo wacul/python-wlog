@@ -25,7 +25,7 @@ import wlog.force
 import other_library
 ```
 
-in other codeset, use this library like [structlog's BoundLogger](standard logging libraray.).
+in other codeset, use this library like [structlog's BoundLogger](https://www.structlog.org/en/stable/api.html#structlog.stdlib.BoundLogger).
 
 ```py
 from wlog import get_logger
