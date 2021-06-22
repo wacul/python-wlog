@@ -108,7 +108,7 @@ def processor_filter_by_level(logger, name, event_dict):
 
 
 def _get_default_renderer():
-    if os.environ.get("AIA_LOG", "").lower() == "text":
+    if os.environ.get("AIA_LOG_FORMAT", "").lower() == "text":
         return _ConsoleRenderer()
     else:
         return structlog.processors.JSONRenderer()
