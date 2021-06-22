@@ -73,7 +73,7 @@ def processor_stack_on_exception(src, dst):
         if exc_info:
             exc = structlog.processors._format_exception(exc_info)
         if exc:
-            event_dict[dst] = str(exc)
+            event_dict[dst] = str(exc).splitlines()
         return event_dict
 
     return processor
