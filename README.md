@@ -25,11 +25,16 @@ import wlog.force
 import other_library
 ```
 
-in other codeset, use this library like standard logging libraray.
+in other codeset, use this library like [structlog's BoundLogger](standard logging libraray.).
 
 ```py
 from wlog import get_logger
 logger = get_logger(__name__)
 
 logger.bind(xxx="yyy").info("this is info message")
+
+try:
+    raise Exception("hmm")
+except Exception as e:
+    logger.bind(exception=e).error(repr(e))
 ```
