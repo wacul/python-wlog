@@ -13,7 +13,7 @@ $ pip install git+https://github.com/wacul/python-wlog@0.1.0
 ## features
 
 - structued logging (JSON logging)
-- even unhandling exception
+- even unhandled exception
 
 ## how to use
 
