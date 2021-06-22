@@ -1,9 +1,9 @@
 """
 loggingの設定
 
-JSONで出力。pythonのloggingライブラリとは互換性が全くない
-
-エラーの時にstackにstack traceを保存
+- JSONで出力。pythonのloggingライブラリとは互換性が全くない
+- エラーの時にstackにstack traceを保存
+- TODO: structlogを捨てて書き換える
 """
 
 import logging
@@ -196,7 +196,7 @@ def _pad(s, l):
 # yapf: disable
 DEFAULT_PROCESSORS = [
     processor_filter_by_level,
-    processor_find_caller_information(depth=2, homedir=os.environ.get("HOME", None)),
+    processor_find_caller_information(depth=3, homedir=os.environ.get("HOME", None)),
     processor_basic_information,
     processor_oneline_on_exception("oneline_exception"),
     processor_stack_on_exception("exception", "stack"),
