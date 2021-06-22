@@ -240,6 +240,31 @@ def setup(level=None, context_class=None, processors=None, **kwargs):
         logging.basicConfig(level=level)
         set_loglevel(level)
 
+    # setup sys hooks
+    from ._exception_hooks import (
+        except_logging,
+        unraisable_logging,
+        threading_except_logging,
+    )
+
+    # log uncaught exceptions using this logger configuration. This way we can
+    # have every important python output in JSON format without the need for
+    # multiline parsing afterwards
+    sys.excepthook = except_logging
+    sys.unraisablehook = unraisable_logging
+
+    # Note: threading.excepthook is only supported since Python 3.8
+    if sys.version_info >= (3, 8, 0):
+        import threading
+
+        threading.excepthook = threading_except_logging
+
+    # Note: multiprocessing.Process still doesn't use sys.excepthook, so in
+    # order to make it work, you need to implement a custom Process and
+    # override Process.run method to make the old stdio output obsolete, catch
+    # all exceptions and call sys.excepthook on them
+    return None
+
 
 def set_loglevel(level):
     global _level
