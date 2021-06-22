@@ -1,3 +1,6 @@
+lint:
+	flake8 wlog --ignore E501,W503
+
 run-example:
 	poetry install
 	poetry run python _examples/00*.py

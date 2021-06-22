@@ -185,11 +185,11 @@ class _ConsoleRenderer(structlog.dev.ConsoleRenderer):
         return sio.getvalue()
 
 
-def _pad(s, l):
+def _pad(s, n):
     """
-    Pads *s* to length *l*.
+    Pads *s* to length *n*.
     """
-    missing = l - len(s)
+    missing = n - len(s)
     return s + " " * (missing if missing > 0 else 0)
 
 
