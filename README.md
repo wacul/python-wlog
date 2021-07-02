@@ -7,7 +7,7 @@ internal logging package
 ## install
 
 ```console
-$ pip install git+https://github.com/wacul/python-wlog@0.1.0
+$ pip install git+https://github.com/wacul/python-wlog@0.1.1
 ```
 
 ## features
