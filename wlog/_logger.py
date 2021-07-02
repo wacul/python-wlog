@@ -176,6 +176,9 @@ class _ConsoleRenderer(structlog.dev.ConsoleRenderer):
         )
 
         if stack is not None:
+            if isinstance(stack, list):
+                stack = "\t" + "\n  ".join(stack)
+
             sio.write("\n" + stack)
             if exc is not None:
                 sio.write("\n\n" + "=" * 79 + "\n")
