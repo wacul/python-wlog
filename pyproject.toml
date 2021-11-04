@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "wlog"
-version = "0.1.1"
+version = "0.1.2"
 description = ""
 authors = ["wacul <dev@wacul.co.jp>"]
 
