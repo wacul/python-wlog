@@ -229,11 +229,17 @@ def suppress_logging():
     structlog.configure(logger_factory=lambda *args, **kwargs: structlog.ReturnLogger())
 
 
-def setup(level=None, context_class=None, processors=None, **kwargs):
+def setup(
+    level=None, context_class=None, processors=None, logger_factory=None, **kwargs
+):
     if level is None:
         level = os.environ.get("AIA_LOG_LEVEL")
     if level is not None:
         level = level.upper()
+
+    if os.environ.get("AIA_LOG_STREAM", "").lower() == "stderr":
+        logger_factory = structlog.PrintLoggerFactory(sys.stderr)
+        kwargs["logger_factory"] = logger_factory
 
     kwargs["context_class"] = context_class or make_ordered_context
     kwargs["processors"] = processors or DEFAULT_PROCESSORS
