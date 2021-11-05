@@ -230,7 +230,12 @@ def suppress_logging():
 
 
 def setup(
-    level=None, context_class=None, processors=None, logger_factory=None, **kwargs
+    level=None,
+    stream=None,
+    context_class=None,
+    processors=None,
+    logger_factory=None,
+    **kwargs
 ):
     if level is None:
         level = os.environ.get("AIA_LOG_LEVEL")
@@ -239,7 +244,8 @@ def setup(
 
     if logger_factory is None:
         if os.environ.get("AIA_LOG_STREAM", "").lower() == "stderr":
-            logger_factory = structlog.PrintLoggerFactory(sys.stderr)
+            stream = sys.stderr
+        logger_factory = structlog.PrintLoggerFactory(stream)
 
     kwargs["logger_factory"] = logger_factory
     kwargs["context_class"] = context_class or make_ordered_context
@@ -247,7 +253,7 @@ def setup(
     structlog.configure(**kwargs)
 
     if level is not None:
-        logging.basicConfig(level=level)
+        logging.basicConfig(level=level, stream=stream)
         set_loglevel(level)
 
     # setup sys hooks
